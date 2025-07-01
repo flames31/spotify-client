@@ -5,14 +5,12 @@ import (
 
 	"github.com/flames31/spotify-client/cmd"
 	"github.com/flames31/spotify-client/internal/config"
-	"github.com/go-resty/resty/v2"
-	"github.com/spf13/viper"
 )
 
 func main() {
 	newApp := &config.App{
-		Client: resty.New(),
-		Viper:  viper.GetViper(),
+		Client: config.NewRestyClient(),
+		Config: config.NewConfig(),
 	}
 	root := cmd.RootCmd(newApp)
 	if err := root.Execute(); err != nil {

@@ -1,11 +1,16 @@
 package config
 
-import (
-	"github.com/go-resty/resty/v2"
-	"github.com/spf13/viper"
-)
-
 type App struct {
-	Client *resty.Client
-	Viper  *viper.Viper
+	Client HTTPClient
+	Config Viper
+}
+
+type HTTPClient interface {
+	GetToken(url string, body interface{}) ([]byte, error)
+}
+
+type Viper interface {
+	Get(key string) any
+	Set(key string, val any)
+	Write() error
 }
