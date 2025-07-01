@@ -8,11 +8,11 @@ import (
 )
 
 func main() {
-	newApp := &config.App{
+	app := &config.App{
 		Client: config.NewRestyClient(),
-		Config: config.NewConfig(),
+		Config: config.NewViperConfig(),
 	}
-	root := cmd.RootCmd(newApp)
+	root := cmd.RootCmd(app)
 	if err := root.Execute(); err != nil {
 		log.Fatalf("error : %v", err)
 	}

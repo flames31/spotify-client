@@ -18,7 +18,8 @@ func RootCmd(app *config.App) *cobra.Command {
 		Long:  `Spoify client is a CLI app that fetches data from your spotify account and provides various commands to view and edit data`,
 	}
 
-	command.AddCommand(connectCmd(app))
+	command.AddCommand(connectCmd())
+	command.AddCommand(albumsCmd(app))
 	return command
 }
 
